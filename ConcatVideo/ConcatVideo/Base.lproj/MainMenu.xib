@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
+            <connections>
+                <outlet property="delegate" destination="Voe-Tx-rLC" id="GzC-gU-4Uq"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application"/>
+        <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
+            <connections>
+                <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
+            </connections>
+        </customObject>
+        <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
+        <customObject id="2Jf-Lb-PG0" customClass="Controller"/>
+        <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
+            <items>
+                <menuItem title="ConcatVideo" id="1Xt-HY-uBw">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="ConcatVideo" systemMenu="apple" id="uQy-DD-JDr">
+                        <items>
+                            <menuItem title="About ConcatVideo" id="5kV-Vb-QxS">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="orderFrontStandardAboutPanel:" target="-1" id="Exp-CZ-Vem"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
+                            <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW"/>
+                            <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
+                            <menuItem title="Services" id="NMo-om-nkz">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Services" systemMenu="services" id="hz9-B4-Xy5"/>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="4je-JR-u6R"/>
+                            <menuItem title="Hide ConcatVideo" keyEquivalent="h" id="Olw-nP-bQN">
+                                <connections>
+                                    <action selector="hide:" target="-1" id="PnN-Uc-m68"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Hide Others" keyEquivalent="h" id="Vdr-fp-XzO">
+                                <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                <connections>
+                                    <action selector="hideOtherApplications:" target="-1" id="VT4-aY-XCT"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Show All" id="Kd2-mp-pUS">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="unhideAllApplications:" target="-1" id="Dhg-Le-xox"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
+                            <menuItem title="Quit ConcatVideo" keyEquivalent="q" id="4sb-4s-VLi">
+                                <connections>
+                                    <action selector="terminate:" target="-1" id="Te7-pn-YzF"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+                <menuItem title="File" id="dMs-cI-mzQ">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="File" id="bib-Uj-vzu">
+                        <items>
+                            <menuItem title="Open…" keyEquivalent="o" id="IAo-SY-fd9">
+                                <connections>
+                                    <action selector="openDocument:" target="-1" id="bVn-NM-KNZ"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+                <menuItem title="Window" id="aUF-d1-5bR">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Window" systemMenu="window" id="Td7-aD-5lo">
+                        <items>
+                            <menuItem title="Minimize" keyEquivalent="m" id="OY7-WF-poV">
+                                <connections>
+                                    <action selector="performMiniaturize:" target="-1" id="VwT-WD-YPe"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Zoom" id="R4o-n2-Eq4">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="performZoom:" target="-1" id="DIl-cC-cCs"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="eu3-7i-yIM"/>
+                            <menuItem title="Bring All to Front" id="LE2-aR-0XJ">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="arrangeInFront:" target="-1" id="DRN-fu-gQh"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+                <menuItem title="Help" id="wpr-3q-Mcd">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Help" systemMenu="help" id="F2S-fz-NVQ">
+                        <items>
+                            <menuItem title="ConcatVideo Help" keyEquivalent="?" id="FKE-Sm-Kum">
+                                <connections>
+                                    <action selector="showHelp:" target="-1" id="y7X-2Q-9no"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+            </items>
+        </menu>
+        <window title="ConcatVideo" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
+            <windowStyleMask key="styleMask" titled="YES" miniaturizable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="335" y="390" width="707" height="324"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
+            <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
+                <rect key="frame" x="0.0" y="0.0" width="707" height="324"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ly-dK-8V3">
+                        <rect key="frame" x="20" y="62" width="667" height="242"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <clipView key="contentView" ambiguous="YES" id="y7F-v4-Sh9">
+                            <rect key="frame" x="1" y="0.0" width="665" height="241"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="Yd2-oO-r8V" id="8ZN-or-TH5" customClass="TableView">
+                                    <rect key="frame" x="0.0" y="0.0" width="665" height="218"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <size key="intercellSpacing" width="3" height="2"/>
+                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                    <tableColumns>
+                                        <tableColumn identifier="" width="65.96484375" minWidth="40" maxWidth="1000" id="LJh-iz-WNR">
+                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Index">
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
+                                            </tableHeaderCell>
+                                            <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="4bB-K0-fNG">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                            <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                        </tableColumn>
+                                        <tableColumn identifier="" width="593" minWidth="40" maxWidth="1000" id="dW8-op-d84">
+                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Video File">
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
+                                            </tableHeaderCell>
+                                            <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="6Dv-Hf-PTb">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                            <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                        </tableColumn>
+                                    </tableColumns>
+                                </tableView>
+                            </subviews>
+                        </clipView>
+                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="4A2-yY-YVd">
+                            <rect key="frame" x="-7" y="8" width="0.0" height="15"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="pR6-PA-8dO">
+                            <rect key="frame" x="-14" y="15" width="15" height="0.0"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                        <tableHeaderView key="headerView" id="Yd2-oO-r8V">
+                            <rect key="frame" x="0.0" y="0.0" width="665" height="23"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </tableHeaderView>
+                    </scrollView>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J5g-BY-9mZ">
+                        <rect key="frame" x="14" y="14" width="103" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Add Video" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ffy-NX-yen">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                    </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dfC-Hv-cr1">
+                        <rect key="frame" x="113" y="14" width="89" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Remove" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="eLc-gw-g31">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                    </button>
+                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hwf-JO-wuV">
+                        <rect key="frame" x="240" y="19" width="44" height="21"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="24" drawsBackground="YES" id="5qa-lW-4Bd">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uWb-dI-fTB">
+                        <rect key="frame" x="202" y="21" width="32" height="17"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="FPS:" id="hdc-Os-RVz">
+                            <font key="font" usesAppearanceFont="YES"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uWD-P4-VRR">
+                        <rect key="frame" x="362" y="19" width="69" height="22"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="1920" drawsBackground="YES" id="c31-zf-NEz">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ajO-7J-0uk">
+                        <rect key="frame" x="430" y="23" width="11" height="17"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="x" id="JcQ-Bn-XGR">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vRs-Ic-vTJ">
+                        <rect key="frame" x="439" y="19" width="69" height="22"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="1080" drawsBackground="YES" id="BSL-08-mv2">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cDK-lg-yTr">
+                        <rect key="frame" x="290" y="21" width="72" height="17"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="Resolution:" id="B07-yr-sDa">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XTP-iT-K4y">
+                        <rect key="frame" x="514" y="18" width="96" height="26"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <popUpButtonCell key="cell" type="push" title="Add" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="Ysi-MT-GTW" id="LKC-gv-M67">
+                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="menu"/>
+                            <menu key="menu" id="cnE-6p-M71">
+                                <items>
+                                    <menuItem title="Add" state="on" id="Ysi-MT-GTW"/>
+                                    <menuItem title="Add Scale" id="zTW-xy-vwI"/>
+                                    <menuItem title="And" id="sre-g3-seB"/>
+                                    <menuItem title="Or" id="amP-D0-PmF"/>
+                                    <menuItem title="Xor" id="wNy-tU-hZh"/>
+                                </items>
+                            </menu>
+                        </popUpButtonCell>
+                    </popUpButton>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3S8-DU-tGE">
+                        <rect key="frame" x="609" y="16" width="84" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Concat" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Aa2-7S-CnT">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="concatVideos:" target="2Jf-Lb-PG0" id="sk0-jA-wLV"/>
+                        </connections>
+                    </button>
+                </subviews>
+            </view>
+            <point key="canvasLocation" x="245.5" y="-124"/>
+        </window>
+    </objects>
+</document>
