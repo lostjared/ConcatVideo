@@ -18,7 +18,16 @@
             </connections>
         </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
-        <customObject id="2Jf-Lb-PG0" customClass="Controller"/>
+        <customObject id="2Jf-Lb-PG0" customClass="Controller">
+            <connections>
+                <outlet property="button_add" destination="J5g-BY-9mZ" id="BFw-PU-aK9"/>
+                <outlet property="button_concat" destination="3S8-DU-tGE" id="Pzf-4r-Nye"/>
+                <outlet property="button_remove" destination="dfC-Hv-cr1" id="WZA-Vd-9hq"/>
+                <outlet property="conat_fps" destination="hwf-JO-wuV" id="jOB-Ac-Cxf"/>
+                <outlet property="concat_h" destination="vRs-Ic-vTJ" id="dx7-Yo-iE0"/>
+                <outlet property="concat_w" destination="uWD-P4-VRR" id="QWN-ax-Uau"/>
+            </connections>
+        </customObject>
         <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
             <items>
                 <menuItem title="ConcatVideo" id="1Xt-HY-uBw">
