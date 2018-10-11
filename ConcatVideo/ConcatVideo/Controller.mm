@@ -296,7 +296,9 @@ void concatFrame(AddType add_type, cv::Mat &frame) {
                 cv::Vec3b &pixel = frame.at<cv::Vec3b>(z, i);
                 cv::Vec3b pix;
                 for(int q = 0; q < frames.size(); ++q) {
-                    cv::Vec3b value = frames[q].at<cv::Vec3b>(z, i);
+                    int cX = AC_GetFX(frames[q].cols, i, frame.cols);
+                    int cY = AC_GetFZ(frames[q].rows, z, frame.rows);
+                    cv::Vec3b value = frames[q].at<cv::Vec3b>(cY,cX);
                     for(int j = 0; j < 3; ++j)
                         pix[j] += static_cast<unsigned char>(value[j]*fade_amount);
                 }
