@@ -42,6 +42,7 @@ void concatFrame(cv::Mat &frame);
 @implementation Controller
 
 @synthesize stopVideoLoop;
+@synthesize videoProc;
 
 - (void) awakeFromNib {
     table_delegate = [[TableDelegate alloc] init];
@@ -49,6 +50,7 @@ void concatFrame(cv::Mat &frame);
     [table_view setDelegate: table_delegate];
     [table_view setDataSource: table_delegate];
     [table_view reloadData];
+    videoProc = NO;
 }
 
 - (IBAction) addVideos: (id) sender {
@@ -140,6 +142,7 @@ void concatFrame(cv::Mat &frame);
             TableDelegate *table_delegate_ = table_delegate;
             NSTextField *output_label = concat_progress;
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+                [self setVideoProc:YES];
                 NSString *fstr = [table_delegate_.values objectAtIndex:0];
                 cv::VideoCapture main_file([fstr UTF8String]);
                 if(!main_file.isOpened()) {
@@ -147,6 +150,7 @@ void concatFrame(cv::Mat &frame);
                         _NSRunAlertPanel(@"Could not open source file", @"Could not open main file", @"Ok", nil, nil);
                         [button_concat_ setTitle:@"Concat"];
                     });
+                    [self setVideoProc: NO];
                     return;
                 }
                 double fps = main_file.get(cv::CAP_PROP_FPS);
@@ -160,6 +164,7 @@ void concatFrame(cv::Mat &frame);
                         _NSRunAlertPanel(@"Could not create file", @"Incorrect Path/Acesss ?", @"Ok", nil, nil);
                         [button_concat_ setTitle:@"Concat"];
                     });
+                    [self setVideoProc: NO];
                     return;
                 }
                 std::vector<std::string> file_names;
@@ -174,6 +179,7 @@ void concatFrame(cv::Mat &frame);
                             _NSRunAlertPanel(@"Could not open file", [NSString stringWithFormat:@"Could not open: %s", video_files[i]->name.c_str()], @"Ok", nil, nil);
                             [button_concat_ setTitle:@"Concat"];
                         });
+                        [self setVideoProc: NO];
                         return;
                     }
                 }
@@ -186,6 +192,7 @@ void concatFrame(cv::Mat &frame);
                             [output_label setStringValue: @"Stopped"];
                             [button_concat_ setTitle:@"Concat"];
                         });
+                        [self setVideoProc: NO];
                         return;
                     }
                     cv::Mat frame;
@@ -207,15 +214,23 @@ void concatFrame(cv::Mat &frame);
                         [output_label setStringValue: [NSString stringWithFormat:@"Writing Frames... [%ld/%ld] - %d%%", index, max_frame, (int)percent]];
                     });
                 }
-                
                 dispatch_sync(dispatch_get_main_queue(), ^{
                     [output_label setStringValue: [NSString stringWithFormat:@"Complete wrote to file %@", filename]];
                 });
-                
+                [self setVideoProc: NO];
             });
         }
     } else {
         [self setStopVideoLoop:YES];
+    }
+}
+
+- (IBAction) quitApp: (id) sender {
+    if([self videoProc] == YES && [self stopVideoLoop] == NO) {
+        [self setStopVideoLoop: YES];
+        _NSRunAlertPanel(@"Stopped Process, click Quit again to exit...", @"Concat Stopped, click Quit to exit", @"Ok", nil, nil);
+    } else {
+        [NSApp terminate:nil];
     }
 }
 

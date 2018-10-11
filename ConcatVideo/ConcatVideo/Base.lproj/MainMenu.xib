@@ -70,7 +70,7 @@
                             <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
                             <menuItem title="Quit ConcatVideo" keyEquivalent="q" id="4sb-4s-VLi">
                                 <connections>
-                                    <action selector="terminate:" target="-1" id="Te7-pn-YzF"/>
+                                    <action selector="quitApp:" target="2Jf-Lb-PG0" id="79l-Th-0as"/>
                                 </connections>
                             </menuItem>
                         </items>
@@ -277,7 +277,7 @@
                     </scrollView>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="-118" y="-328.5"/>
+            <point key="canvasLocation" x="-743" y="-586"/>
         </window>
     </objects>
 </document>

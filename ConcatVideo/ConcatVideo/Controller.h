@@ -18,12 +18,14 @@
 }
 
 @property (readwrite) BOOL stopVideoLoop;
+@property (readwrite) BOOL videoProc;
 
 - (IBAction) addVideos: (id) sender;
 - (IBAction) removeVideo: (id) sender;
 - (IBAction) concatVideos: (id) sender;
 - (IBAction) moveUp: (id) sender;
 - (IBAction) moveDown: (id) sender;
+- (IBAction) quitApp: (id) sender;
 @end
 
 #endif
