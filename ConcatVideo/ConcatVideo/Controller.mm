@@ -107,6 +107,7 @@ void concatFrame(cv::Mat &frame);
     }
     
     if([[button_concat title] isEqualToString:@"Concat"]) {
+        cleanVideo();
         NSButton *button_concat_ = button_concat;
         [self setStopVideoLoop:NO];
         NSSavePanel *panel = [NSSavePanel savePanel];
@@ -206,6 +207,7 @@ void concatFrame(cv::Mat &frame);
                 dispatch_sync(dispatch_get_main_queue(), ^{
                     [output_label setStringValue: [NSString stringWithFormat:@"Complete wrote to file %@", filename]];
                 });
+                
             });
         }
     } else {
@@ -227,7 +229,8 @@ void cleanVideo() {
     for(unsigned int i = 0; i < video_files.size(); ++i)
         delete video_files[i];
     
-    video_files.erase(video_files.begin(), video_files.end());
+    if(!video_files.empty())
+    	video_files.erase(video_files.begin(), video_files.end());
 }
 
 void concatFrame(cv::Mat &frame) {
