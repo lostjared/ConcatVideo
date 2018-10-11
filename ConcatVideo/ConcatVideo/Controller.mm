@@ -131,6 +131,9 @@ void concatFrame(cv::Mat &frame);
             case 4:
                 add_type = AddType::AT_XOR;
                 break;
+            case 5:
+                add_type = AddType::AT_ALPHA_BLEND;
+                break;
         }
         if([panel runModal]) {
             [button_concat setTitle: @"Stop"];
@@ -239,7 +242,7 @@ void concatFrame(cv::Mat &frame) {
     
     double fade_amount = 1.0;
     if(video_files.size()>0)
-        fade_amount = 1.0/1+video_files.size();
+        fade_amount = 1.0/(1+video_files.size());
     
     for(unsigned int q = 0; q < video_files.size(); ++q) {
         if(video_files[q]->capture.isOpened() && video_files[q]->capture.read(frame2) == true) {
@@ -256,6 +259,9 @@ void concatFrame(cv::Mat &frame) {
                                 break;
                             case AddType::AT_ADD_SCALE:
                                 pixel[j] += static_cast<unsigned char>(second_pixel[j]*fade_amount);
+                                break;
+                            case AddType::AT_ALPHA_BLEND:
+                                pixel[j] = static_cast<unsigned char>(pixel[j] * fade_amount) + static_cast<unsigned char>(second_pixel[j]*fade_amount);
                                 break;
                             case AddType::AT_XOR:
                                 pixel[j] = pixel[j]^second_pixel[j];

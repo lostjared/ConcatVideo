@@ -46,7 +46,7 @@ public:
     std::string name;
 };
 
-enum class AddType { AT_ADD, AT_ADD_SCALE, AT_XOR, AT_AND, AT_OR };
+enum class AddType { AT_ADD, AT_ADD_SCALE, AT_XOR, AT_AND, AT_OR, AT_ALPHA_BLEND};
 extern std::vector<AC_VideoCapture *> video_files;
 extern AddType add_type;
 #endif

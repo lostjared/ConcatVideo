@@ -149,6 +149,7 @@
                                     <menuItem title="And" id="sre-g3-seB"/>
                                     <menuItem title="Or" id="amP-D0-PmF"/>
                                     <menuItem title="Xor" id="wNy-tU-hZh"/>
+                                    <menuItem title="Alpha Blend" id="Aqg-2O-Ggv"/>
                                 </items>
                             </menu>
                         </popUpButtonCell>
