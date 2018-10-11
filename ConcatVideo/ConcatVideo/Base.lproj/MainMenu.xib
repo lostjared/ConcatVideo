@@ -22,10 +22,13 @@
             <connections>
                 <outlet property="button_add" destination="J5g-BY-9mZ" id="BFw-PU-aK9"/>
                 <outlet property="button_concat" destination="3S8-DU-tGE" id="Pzf-4r-Nye"/>
+                <outlet property="button_down" destination="LQz-oM-aaw" id="HhC-uV-OqQ"/>
                 <outlet property="button_remove" destination="dfC-Hv-cr1" id="WZA-Vd-9hq"/>
+                <outlet property="button_up" destination="DD7-1h-rqT" id="nlA-C0-3yS"/>
                 <outlet property="conat_fps" destination="hwf-JO-wuV" id="jOB-Ac-Cxf"/>
                 <outlet property="concat_h" destination="vRs-Ic-vTJ" id="dx7-Yo-iE0"/>
                 <outlet property="concat_w" destination="uWD-P4-VRR" id="QWN-ax-Uau"/>
+                <outlet property="table_view" destination="8ZN-or-TH5" id="YBa-Cn-Ofy"/>
             </connections>
         </customObject>
         <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
@@ -128,14 +131,14 @@
         <window title="ConcatVideo" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="707" height="324"/>
+            <rect key="contentRect" x="335" y="390" width="707" height="376"/>
             <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
             <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="707" height="324"/>
+                <rect key="frame" x="0.0" y="0.0" width="707" height="376"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ly-dK-8V3">
-                        <rect key="frame" x="20" y="62" width="667" height="242"/>
+                        <rect key="frame" x="20" y="114" width="667" height="242"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <clipView key="contentView" ambiguous="YES" id="y7F-v4-Sh9">
                             <rect key="frame" x="1" y="0.0" width="665" height="241"/>
@@ -191,22 +194,6 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </tableHeaderView>
                     </scrollView>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J5g-BY-9mZ">
-                        <rect key="frame" x="14" y="14" width="103" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" title="Add Video" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ffy-NX-yen">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                    </button>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dfC-Hv-cr1">
-                        <rect key="frame" x="113" y="14" width="89" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" title="Remove" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="eLc-gw-g31">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                    </button>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hwf-JO-wuV">
                         <rect key="frame" x="240" y="19" width="44" height="21"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -262,7 +249,7 @@
                         </textFieldCell>
                     </textField>
                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XTP-iT-K4y">
-                        <rect key="frame" x="514" y="18" width="96" height="26"/>
+                        <rect key="frame" x="514" y="16" width="96" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <popUpButtonCell key="cell" type="push" title="Add" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="Ysi-MT-GTW" id="LKC-gv-M67">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -279,7 +266,7 @@
                         </popUpButtonCell>
                     </popUpButton>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3S8-DU-tGE">
-                        <rect key="frame" x="609" y="16" width="84" height="32"/>
+                        <rect key="frame" x="609" y="13" width="84" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Concat" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Aa2-7S-CnT">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -289,9 +276,53 @@
                             <action selector="concatVideos:" target="2Jf-Lb-PG0" id="sk0-jA-wLV"/>
                         </connections>
                     </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J5g-BY-9mZ">
+                        <rect key="frame" x="14" y="66" width="111" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Add Video" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ffy-NX-yen">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="addVideos:" target="2Jf-Lb-PG0" id="Bfc-Dj-9Ys"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dfC-Hv-cr1">
+                        <rect key="frame" x="123" y="66" width="111" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Remove" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="eLc-gw-g31">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="removeVideo:" target="2Jf-Lb-PG0" id="fvW-3b-pUN"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DD7-1h-rqT">
+                        <rect key="frame" x="234" y="66" width="111" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Move Up" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="t4w-EO-PVW">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="moveUp:" target="2Jf-Lb-PG0" id="uVX-Vw-PRS"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LQz-oM-aaw">
+                        <rect key="frame" x="341" y="66" width="111" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Move Down" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ah5-PF-Wxe">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="moveDown:" target="2Jf-Lb-PG0" id="rZ7-J2-38i"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="245.5" y="-124"/>
+            <point key="canvasLocation" x="245.5" y="-98"/>
         </window>
     </objects>
 </document>
