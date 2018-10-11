@@ -18,3 +18,6 @@ cv::Mat resizeKeepAspectRatio(const cv::Mat &input, const cv::Size &dstSize, con
 }
 
 
+std::vector<AC_VideoCapture *> video_files;
+AddType add_type;
+
