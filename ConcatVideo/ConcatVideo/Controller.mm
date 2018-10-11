@@ -211,10 +211,10 @@ void concatFrame(AddType add_type, cv::Mat &frame);
                     writer.write(frame);
                     ++index;
                     if([self showVideo] == YES) {
-                    	dispatch_sync(dispatch_get_main_queue(), ^{
-                    	  	cv::Mat frame_resized = resizeKeepAspectRatio(frame, cv::Size(640, 480), cv::Scalar(0, 0, 0));
-                         	cv::imshow("ConcatVideo", frame_resized);
-                    	});
+                        dispatch_sync(dispatch_get_main_queue(), ^{
+                            cv::Mat frame_resized = resizeKeepAspectRatio(frame, cv::Size(640, 480), cv::Scalar(0, 0, 0));
+                            cv::imshow("ConcatVideo", frame_resized);
+                        });
                     }
                     double val = index;
                     double size = frame_max;
@@ -273,7 +273,7 @@ void cleanVideo() {
         delete video_files[i];
     
     if(!video_files.empty())
-    	video_files.erase(video_files.begin(), video_files.end());
+        video_files.erase(video_files.begin(), video_files.end());
 }
 
 void concatFrame(AddType add_type, cv::Mat &frame) {
@@ -283,34 +283,57 @@ void concatFrame(AddType add_type, cv::Mat &frame) {
     if(video_files.size()>0)
         fade_amount = 1.0/(1+video_files.size());
     
-    for(unsigned int q = 0; q < video_files.size(); ++q) {
-        if(video_files[q]->capture.isOpened() && video_files[q]->capture.read(frame2) == true) {
-            for(unsigned int z = 0; z < frame.rows; ++z) {
-                for(unsigned int i = 0; i < frame.cols; ++i) {
-                    cv::Vec3b &pixel = frame.at<cv::Vec3b>(z, i);
-                    int cX = AC_GetFX(frame2.cols, i, frame.cols);
-                    int cY = AC_GetFZ(frame2.rows, z, frame.rows);
-                    cv::Vec3b second_pixel = frame2.at<cv::Vec3b>(cY, cX);
-                    for(unsigned int j = 0; j < 3; ++j) {
-                        switch(add_type) {
-                            case AddType::AT_ADD:
-                                pixel[j] += second_pixel[j];
-                                break;
-                            case AddType::AT_ADD_SCALE:
-                                pixel[j] += static_cast<unsigned char>(second_pixel[j]*fade_amount);
-                                break;
-                            case AddType::AT_ALPHA_BLEND:
-                                pixel[j] = static_cast<unsigned char>(pixel[j] * fade_amount) + static_cast<unsigned char>(second_pixel[j]*fade_amount);
-                                break;
-                            case AddType::AT_XOR:
-                                pixel[j] = pixel[j]^second_pixel[j];
-                                break;
-                            case AddType::AT_AND:
-                                pixel[j] = pixel[j]&second_pixel[j];
-                                break;
-                            case AddType::AT_OR:
-                                pixel[j] = pixel[j]|second_pixel[j];
-                                break;
+    if(add_type == AddType::AT_ALPHA_BLEND) {
+        std::vector<cv::Mat> frames;
+        cv::Mat frame2;
+        for(int q = 0; q < video_files.size(); ++q) {
+            if(video_files[q]->capture.isOpened() && video_files[q]->capture.read(frame2) == true) {
+                frames.push_back(frame2);
+            }
+        }
+        for(int z = 0; z < frame.rows; ++z) {
+            for(int i = 0; i < frame.cols; ++i) {
+                cv::Vec3b &pixel = frame.at<cv::Vec3b>(z, i);
+                cv::Vec3b pix;
+                for(int q = 0; q < frames.size(); ++q) {
+                    cv::Vec3b value = frames[q].at<cv::Vec3b>(z, i);
+                    for(int j = 0; j < 3; ++j)
+                        pix[j] += static_cast<unsigned char>(value[j]*fade_amount);
+                }
+                for(int j = 0; j < 3; ++j)
+                	pixel[j] = static_cast<unsigned char>(pixel[j]*fade_amount) + pix[j];
+            }
+        }
+    } else {
+        for(unsigned int q = 0; q < video_files.size(); ++q) {
+            if(video_files[q]->capture.isOpened() && video_files[q]->capture.read(frame2) == true) {
+                for(int z = 0; z < frame.rows; ++z) {
+                    for(int i = 0; i < frame.cols; ++i) {
+                        cv::Vec3b &pixel = frame.at<cv::Vec3b>(z, i);
+                        int cX = AC_GetFX(frame2.cols, i, frame.cols);
+                        int cY = AC_GetFZ(frame2.rows, z, frame.rows);
+                        cv::Vec3b second_pixel = frame2.at<cv::Vec3b>(cY, cX);
+                        for(unsigned int j = 0; j < 3; ++j) {
+                            switch(add_type) {
+                                case AddType::AT_ADD:
+                                    pixel[j] += second_pixel[j];
+                                    break;
+                                case AddType::AT_ADD_SCALE:
+                                    pixel[j] += static_cast<unsigned char>(second_pixel[j]*fade_amount);
+                                    break;
+                                case AddType::AT_ALPHA_BLEND:
+                                    pixel[j] = static_cast<unsigned char>(pixel[j] * fade_amount) + static_cast<unsigned char>(second_pixel[j]*fade_amount);
+                                    break;
+                                case AddType::AT_XOR:
+                                    pixel[j] = pixel[j]^second_pixel[j];
+                                    break;
+                                case AddType::AT_AND:
+                                    pixel[j] = pixel[j]&second_pixel[j];
+                                    break;
+                                case AddType::AT_OR:
+                                    pixel[j] = pixel[j]|second_pixel[j];
+                                    break;
+                            }
                         }
                     }
                 }
