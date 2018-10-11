@@ -356,6 +356,7 @@ void concatFrame(AddType add_type, cv::Mat &frame) {
                                     pixel[j] = pixel[j]|second_pixel[j];
                                     break;
                                 case AddType::AT_ALPHA_BLEND:
+                                case AddType::AT_XOR_BLEND:
                                     break;
                             }
                         }
