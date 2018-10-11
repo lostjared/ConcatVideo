@@ -321,10 +321,7 @@ void concatFrame(AddType add_type, cv::Mat &frame) {
                                 case AddType::AT_ADD_SCALE:
                                     pixel[j] += static_cast<unsigned char>(second_pixel[j]*fade_amount);
                                     break;
-                                case AddType::AT_ALPHA_BLEND:
-                                    pixel[j] = static_cast<unsigned char>(pixel[j] * fade_amount) + static_cast<unsigned char>(second_pixel[j]*fade_amount);
-                                    break;
-                                case AddType::AT_XOR:
+                                 case AddType::AT_XOR:
                                     pixel[j] = pixel[j]^second_pixel[j];
                                     break;
                                 case AddType::AT_AND:
@@ -332,6 +329,8 @@ void concatFrame(AddType add_type, cv::Mat &frame) {
                                     break;
                                 case AddType::AT_OR:
                                     pixel[j] = pixel[j]|second_pixel[j];
+                                    break;
+                                case AddType::AT_ALPHA_BLEND:
                                     break;
                             }
                         }
