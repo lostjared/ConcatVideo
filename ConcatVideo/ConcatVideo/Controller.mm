@@ -4,7 +4,7 @@
 NSInteger _NSRunAlertPanel(NSString *msg1, NSString *msg2, NSString *button1, NSString *button2, NSString *button3);
 void setVideo(std::vector<std::string> &v);
 void cleanVideo();
-void concatFrame(cv::Mat &frame);
+void concatFrame(AddType add_type, cv::Mat &frame);
 
 @implementation TableDelegate
 
@@ -43,6 +43,8 @@ void concatFrame(cv::Mat &frame);
 
 @synthesize stopVideoLoop;
 @synthesize videoProc;
+@synthesize showVideo;
+@synthesize add_type;
 
 - (void) awakeFromNib {
     table_delegate = [[TableDelegate alloc] init];
@@ -51,6 +53,7 @@ void concatFrame(cv::Mat &frame);
     [table_view setDataSource: table_delegate];
     [table_view reloadData];
     videoProc = NO;
+    showVideo = NO;
 }
 
 - (IBAction) addVideos: (id) sender {
@@ -101,13 +104,37 @@ void concatFrame(cv::Mat &frame);
     }
 }
 
+- (IBAction) changeAddState: (id) sender {
+    NSInteger add_button_index = [popup_button indexOfSelectedItem];
+    switch(add_button_index) {
+        case 0:
+            add_type = AddType::AT_ADD;
+            break;
+        case 1:
+            add_type = AddType::AT_ADD_SCALE;
+            break;
+        case 2:
+            add_type = AddType::AT_AND;
+            break;
+        case 3:
+            add_type = AddType::AT_OR;
+            break;
+        case 4:
+            add_type = AddType::AT_XOR;
+            break;
+        case 5:
+            add_type = AddType::AT_ALPHA_BLEND;
+            break;
+    }
+}
+
 - (IBAction) concatVideos: (id) sender {
     
     if([table_delegate.values count] <= 1) {
         _NSRunAlertPanel(@"You need to add at least two video files", @"Add some files...", @"Ok", nil, nil);
         return;
     }
-    
+    [self changeAddState:self];
     if([[button_concat title] isEqualToString:@"Concat"]) {
         cleanVideo();
         NSButton *button_concat_ = button_concat;
@@ -116,27 +143,6 @@ void concatFrame(cv::Mat &frame);
         [panel setCanCreateDirectories:YES];
         [panel setAllowedFileTypes: [NSArray arrayWithObject:@"mov"]];
         
-        NSInteger add_button_index = [popup_button indexOfSelectedItem];
-        switch(add_button_index) {
-            case 0:
-                add_type = AddType::AT_ADD;
-                break;
-            case 1:
-                add_type = AddType::AT_ADD_SCALE;
-                break;
-            case 2:
-                add_type = AddType::AT_AND;
-                break;
-            case 3:
-                add_type = AddType::AT_OR;
-                break;
-            case 4:
-                add_type = AddType::AT_XOR;
-                break;
-            case 5:
-                add_type = AddType::AT_ALPHA_BLEND;
-                break;
-        }
         if([panel runModal]) {
             [button_concat setTitle: @"Stop"];
             TableDelegate *table_delegate_ = table_delegate;
@@ -191,6 +197,7 @@ void concatFrame(cv::Mat &frame);
                         dispatch_sync(dispatch_get_main_queue(), ^{
                             [output_label setStringValue: @"Stopped"];
                             [button_concat_ setTitle:@"Concat"];
+                            cv::destroyWindow("ConcatVideo");
                         });
                         [self setVideoProc: NO];
                         return;
@@ -200,10 +207,15 @@ void concatFrame(cv::Mat &frame);
                         active = false;
                         break;
                     }
-                    concatFrame(frame);
+                    concatFrame([self add_type], frame);
                     writer.write(frame);
                     ++index;
-                    
+                    if([self showVideo] == YES) {
+                    	dispatch_sync(dispatch_get_main_queue(), ^{
+                    	  	cv::Mat frame_resized = resizeKeepAspectRatio(frame, cv::Size(640, 480), cv::Scalar(0, 0, 0));
+                         	cv::imshow("ConcatVideo", frame_resized);
+                    	});
+                    }
                     double val = index;
                     double size = frame_max;
                     double percent = 0;
@@ -216,6 +228,7 @@ void concatFrame(cv::Mat &frame);
                 }
                 dispatch_sync(dispatch_get_main_queue(), ^{
                     [output_label setStringValue: [NSString stringWithFormat:@"Complete wrote to file %@", filename]];
+                    cv::destroyWindow("ConcatVideo");
                 });
                 [self setVideoProc: NO];
             });
@@ -231,6 +244,17 @@ void concatFrame(cv::Mat &frame);
         _NSRunAlertPanel(@"Stopped Process, click Quit again to exit...", @"Concat Stopped, click Quit to exit", @"Ok", nil, nil);
     } else {
         [NSApp terminate:nil];
+    }
+}
+
+- (IBAction) checkShowVideo: (id) sender {
+    NSInteger state = [button_video integerValue];
+    if(state == NSOnState) {
+        showVideo = YES;
+        cv::namedWindow("ConcatVideo");
+    } else {
+        showVideo = NO;
+        cv::destroyWindow("ConcatVideo");
     }
 }
 
@@ -252,7 +276,7 @@ void cleanVideo() {
     	video_files.erase(video_files.begin(), video_files.end());
 }
 
-void concatFrame(cv::Mat &frame) {
+void concatFrame(AddType add_type, cv::Mat &frame) {
     cv::Mat frame2;
     
     double fade_amount = 1.0;

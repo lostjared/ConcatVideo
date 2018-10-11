@@ -25,6 +25,7 @@
                 <outlet property="button_down" destination="LQz-oM-aaw" id="HhC-uV-OqQ"/>
                 <outlet property="button_remove" destination="dfC-Hv-cr1" id="WZA-Vd-9hq"/>
                 <outlet property="button_up" destination="DD7-1h-rqT" id="nlA-C0-3yS"/>
+                <outlet property="button_video" destination="XqO-wD-Hw4" id="Q0A-51-h4P"/>
                 <outlet property="concat_progress" destination="mnU-Fg-Rph" id="hCS-rR-reb"/>
                 <outlet property="popup_button" destination="XTP-iT-K4y" id="z92-3S-L5g"/>
                 <outlet property="table_view" destination="8ZN-or-TH5" id="YBa-Cn-Ofy"/>
@@ -136,24 +137,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="778" height="331"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XTP-iT-K4y">
-                        <rect key="frame" x="585" y="34" width="96" height="26"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <popUpButtonCell key="cell" type="push" title="Add" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="Ysi-MT-GTW" id="LKC-gv-M67">
-                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="menu"/>
-                            <menu key="menu" id="cnE-6p-M71">
-                                <items>
-                                    <menuItem title="Add" state="on" id="Ysi-MT-GTW"/>
-                                    <menuItem title="Add Scale" id="zTW-xy-vwI"/>
-                                    <menuItem title="And" id="sre-g3-seB"/>
-                                    <menuItem title="Or" id="amP-D0-PmF"/>
-                                    <menuItem title="Xor" id="wNy-tU-hZh"/>
-                                    <menuItem title="Alpha Blend" id="Aqg-2O-Ggv"/>
-                                </items>
-                            </menu>
-                        </popUpButtonCell>
-                    </popUpButton>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3S8-DU-tGE">
                         <rect key="frame" x="680" y="31" width="84" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -275,6 +258,38 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </tableHeaderView>
                     </scrollView>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XqO-wD-Hw4">
+                        <rect key="frame" x="487" y="38" width="94" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="check" title="Show Video" bezelStyle="regularSquare" imagePosition="left" inset="2" id="b4T-5E-ryY">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="checkShowVideo:" target="2Jf-Lb-PG0" id="BGb-cN-Tc1"/>
+                        </connections>
+                    </button>
+                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XTP-iT-K4y">
+                        <rect key="frame" x="585" y="33" width="96" height="26"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <popUpButtonCell key="cell" type="push" title="Add" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="Ysi-MT-GTW" id="LKC-gv-M67">
+                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="menu"/>
+                            <menu key="menu" id="cnE-6p-M71">
+                                <items>
+                                    <menuItem title="Add" state="on" id="Ysi-MT-GTW"/>
+                                    <menuItem title="Add Scale" id="zTW-xy-vwI"/>
+                                    <menuItem title="And" id="sre-g3-seB"/>
+                                    <menuItem title="Or" id="amP-D0-PmF"/>
+                                    <menuItem title="Xor" id="wNy-tU-hZh"/>
+                                    <menuItem title="Alpha Blend" id="Aqg-2O-Ggv"/>
+                                </items>
+                            </menu>
+                        </popUpButtonCell>
+                        <connections>
+                            <action selector="changeAddState:" target="2Jf-Lb-PG0" id="N9W-GK-mjQ"/>
+                        </connections>
+                    </popUpButton>
                 </subviews>
             </view>
             <point key="canvasLocation" x="-743" y="-586"/>
