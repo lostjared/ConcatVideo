@@ -56,7 +56,7 @@ void concatFrame(cv::Mat &frame);
     [panel setCanChooseFiles:YES];
     [panel setCanChooseDirectories:NO];
     [panel setAllowsMultipleSelection:YES];
-    [panel setAllowedFileTypes:[NSArray arrayWithObjects:@"mov", @"avi", @"mkv", @"m4v",nil]];
+    [panel setAllowedFileTypes:[NSArray arrayWithObjects:@"mov", @"avi", @"mkv", @"m4v", @"mp4",nil]];
     if([panel runModal]) {
         for(int i = 0; i < [[panel URLs] count]; ++i) {
             NSString *s = [[[panel URLs] objectAtIndex:i] path];
