@@ -113,7 +113,7 @@ void concatFrame(cv::Mat &frame);
         NSSavePanel *panel = [NSSavePanel savePanel];
         [panel setCanCreateDirectories:YES];
         [panel setAllowedFileTypes: [NSArray arrayWithObject:@"mov"]];
-        double fps = 24, aw = 1920, ah = 1080;
+        
         NSInteger add_button_index = [popup_button indexOfSelectedItem];
         switch(add_button_index) {
             case 0:
@@ -137,6 +137,18 @@ void concatFrame(cv::Mat &frame);
             TableDelegate *table_delegate_ = table_delegate;
             NSTextField *output_label = concat_progress;
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+                NSString *fstr = [table_delegate_.values objectAtIndex:0];
+                cv::VideoCapture main_file([fstr UTF8String]);
+                if(!main_file.isOpened()) {
+                    dispatch_sync(dispatch_get_main_queue(), ^{
+                        _NSRunAlertPanel(@"Could not open source file", @"Could not open main file", @"Ok", nil, nil);
+                        [button_concat_ setTitle:@"Concat"];
+                    });
+                    return;
+                }
+                double fps = main_file.get(cv::CAP_PROP_FPS);
+                int aw = static_cast<int>(main_file.get(cv::CAP_PROP_FRAME_WIDTH));
+                int ah = static_cast<int>(main_file.get(cv::CAP_PROP_FRAME_HEIGHT));
                 cv::VideoWriter writer;
                 NSString *filename = [[panel URL] path];
                 writer.open([filename UTF8String],CV_FOURCC('m', 'p', '4', 'v'), fps, cv::Size(aw, ah), true);
@@ -147,17 +159,6 @@ void concatFrame(cv::Mat &frame);
                     });
                     return;
                 }
-                NSString *fstr = [table_delegate_.values objectAtIndex:0];
-                cv::VideoCapture main_file([fstr UTF8String]);
-                
-                if(!main_file.isOpened()) {
-                    dispatch_sync(dispatch_get_main_queue(), ^{
-                        _NSRunAlertPanel(@"Could not open source file", @"Could not open main file", @"Ok", nil, nil);
-                        [button_concat_ setTitle:@"Concat"];
-                    });
-                    return;
-                }
-                
                 std::vector<std::string> file_names;
                 for(unsigned int i = 1; i < [table_delegate_.values count]; ++i) {
                     NSString *s = [table_delegate_.values objectAtIndex:i];
