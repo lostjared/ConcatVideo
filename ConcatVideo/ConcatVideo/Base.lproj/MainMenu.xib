@@ -283,6 +283,7 @@
                                     <menuItem title="Or" id="amP-D0-PmF"/>
                                     <menuItem title="Xor" id="wNy-tU-hZh"/>
                                     <menuItem title="Alpha Blend" id="Aqg-2O-Ggv"/>
+                                    <menuItem title="Alpha Xor Blend" id="1BQ-R9-uWB"/>
                                 </items>
                             </menu>
                         </popUpButtonCell>

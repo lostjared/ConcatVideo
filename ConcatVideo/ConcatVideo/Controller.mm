@@ -125,6 +125,9 @@ void concatFrame(AddType add_type, cv::Mat &frame);
         case 5:
             add_type = AddType::AT_ALPHA_BLEND;
             break;
+        case 6:
+            add_type = AddType::AT_XOR_BLEND;
+            break;
     }
 }
 
@@ -283,7 +286,7 @@ void concatFrame(AddType add_type, cv::Mat &frame) {
     if(video_files.size()>0)
         fade_amount = 1.0/(1+video_files.size());
     
-    if(add_type == AddType::AT_ALPHA_BLEND) {
+    if(add_type == AddType::AT_ALPHA_BLEND || add_type == AddType::AT_XOR_BLEND) {
         std::vector<cv::Mat> frames;
         cv::Mat frame2;
         for(int q = 0; q < video_files.size(); ++q) {
@@ -299,11 +302,31 @@ void concatFrame(AddType add_type, cv::Mat &frame) {
                     int cX = AC_GetFX(frames[q].cols, i, frame.cols);
                     int cY = AC_GetFZ(frames[q].rows, z, frame.rows);
                     cv::Vec3b value = frames[q].at<cv::Vec3b>(cY,cX);
-                    for(int j = 0; j < 3; ++j)
-                        pix[j] += static_cast<unsigned char>(value[j]*fade_amount);
+                    for(int j = 0; j < 3; ++j) {
+                        switch(add_type) {
+                            case AddType::AT_ALPHA_BLEND:
+                                pix[j] += static_cast<unsigned char>(value[j]*fade_amount);
+                                break;
+                            case AddType::AT_XOR_BLEND:
+                                pixel[j] ^= static_cast<unsigned char>(value[j]*fade_amount);
+                                break;
+                            default:
+                                break;
+                        }
+                    }
                 }
-                for(int j = 0; j < 3; ++j)
-                	pixel[j] = static_cast<unsigned char>(pixel[j]*fade_amount) + pix[j];
+                for(int j = 0; j < 3; ++j) {
+                    switch(add_type) {
+                        case AddType::AT_ALPHA_BLEND:
+                            pixel[j] = static_cast<unsigned char>(pixel[j]*fade_amount) + pix[j];
+                            break;
+                        case AddType::AT_XOR_BLEND:
+                            pixel[j] = static_cast<unsigned char>(pixel[j]*fade_amount) ^ pix[j];
+                            break;
+                        default:
+                            break;
+                    }
+                }
             }
         }
     } else {

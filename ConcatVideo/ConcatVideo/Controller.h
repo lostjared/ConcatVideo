@@ -3,7 +3,7 @@
 
 #import<Cocoa/Cocoa.h>
 
-enum class AddType { AT_ADD, AT_ADD_SCALE, AT_XOR, AT_AND, AT_OR, AT_ALPHA_BLEND};
+enum class AddType {AT_ADD, AT_ADD_SCALE, AT_XOR, AT_AND, AT_OR, AT_ALPHA_BLEND, AT_XOR_BLEND};
 
 @interface TableDelegate : NSObject<NSTableViewDataSource, NSTableViewDelegate> {
     
