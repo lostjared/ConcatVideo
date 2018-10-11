@@ -40,6 +40,8 @@
 		7F6F0ECD216E919F00067B41 /* liblibpng.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F6F0EBA216E919F00067B41 /* liblibpng.a */; };
 		7F6F0ED0216E923E00067B41 /* Controller.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F6F0ECE216E923E00067B41 /* Controller.mm */; };
 		7F6F0ED3216E92BE00067B41 /* CV.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F6F0ED1216E92BD00067B41 /* CV.cpp */; };
+		7FE46F48216EEDB00083631F /* reel.icns in Resources */ = {isa = PBXBuildFile; fileRef = 7FE46F47216EEDB00083631F /* reel.icns */; };
+		7FE46F4B216EEE280083631F /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 7FE46F49216EEE280083631F /* Credits.rtf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +84,8 @@
 		7F6F0ECF216E923E00067B41 /* Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Controller.h; sourceTree = "<group>"; };
 		7F6F0ED1216E92BD00067B41 /* CV.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CV.cpp; sourceTree = "<group>"; };
 		7F6F0ED2216E92BD00067B41 /* CV.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CV.hpp; sourceTree = "<group>"; };
+		7FE46F47216EEDB00083631F /* reel.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = reel.icns; sourceTree = "<group>"; };
+		7FE46F4A216EEE280083631F /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Base; path = ConcatVideo/Base.lproj/Credits.rtf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +154,8 @@
 				7F6F0ED1216E92BD00067B41 /* CV.cpp */,
 				7F6F0E89216E90A200067B41 /* Assets.xcassets */,
 				7F6F0E8B216E90A200067B41 /* MainMenu.xib */,
+				7FE46F47216EEDB00083631F /* reel.icns */,
+				7FE46F49216EEE280083631F /* Credits.rtf */,
 				7F6F0E8E216E90A200067B41 /* Info.plist */,
 				7F6F0E8F216E90A200067B41 /* main.m */,
 				7F6F0E91216E90A200067B41 /* ConcatVideo.entitlements */,
@@ -254,7 +260,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				7F6F0E8A216E90A200067B41 /* Assets.xcassets in Resources */,
+				7FE46F48216EEDB00083631F /* reel.icns in Resources */,
 				7F6F0E8D216E90A200067B41 /* MainMenu.xib in Resources */,
+				7FE46F4B216EEE280083631F /* Credits.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,6 +289,14 @@
 				7F6F0E8C216E90A200067B41 /* Base */,
 			);
 			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		7FE46F49216EEE280083631F /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7FE46F4A216EEE280083631F /* Base */,
+			);
+			name = Credits.rtf;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
