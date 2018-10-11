@@ -100,8 +100,13 @@ void concatFrame(cv::Mat &frame);
 }
 
 - (IBAction) concatVideos: (id) sender {
+    
+    if([table_delegate.values count] <= 1) {
+        _NSRunAlertPanel(@"You need to add at least two video files", @"Add some files...", @"Ok", nil, nil);
+        return;
+    }
+    
     if([[button_concat title] isEqualToString:@"Concat"]) {
-        [button_concat setTitle: @"Stop"];
         NSButton *button_concat_ = button_concat;
         [self setStopVideoLoop:NO];
         NSSavePanel *panel = [NSSavePanel savePanel];
@@ -127,6 +132,7 @@ void concatFrame(cv::Mat &frame);
                 break;
         }
         if([panel runModal]) {
+            [button_concat setTitle: @"Stop"];
             TableDelegate *table_delegate_ = table_delegate;
             NSTextField *output_label = concat_progress;
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
@@ -136,6 +142,7 @@ void concatFrame(cv::Mat &frame);
                 if(!writer.isOpened()) {
                     dispatch_sync(dispatch_get_main_queue(), ^{
                         _NSRunAlertPanel(@"Could not create file", @"Incorrect Path/Acesss ?", @"Ok", nil, nil);
+                        [button_concat_ setTitle:@"Concat"];
                     });
                     return;
                 }
@@ -145,6 +152,7 @@ void concatFrame(cv::Mat &frame);
                 if(!main_file.isOpened()) {
                     dispatch_sync(dispatch_get_main_queue(), ^{
                         _NSRunAlertPanel(@"Could not open source file", @"Could not open main file", @"Ok", nil, nil);
+                        [button_concat_ setTitle:@"Concat"];
                     });
                     return;
                 }
@@ -159,6 +167,7 @@ void concatFrame(cv::Mat &frame);
                     if(!video_files[i]->openVideo()) {
                         dispatch_sync(dispatch_get_main_queue(), ^{
                             _NSRunAlertPanel(@"Could not open file", [NSString stringWithFormat:@"Could not open: %s", video_files[i]->name.c_str()], @"Ok", nil, nil);
+                            [button_concat_ setTitle:@"Concat"];
                         });
                         return;
                     }

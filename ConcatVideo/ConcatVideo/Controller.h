@@ -11,7 +11,7 @@
 
 @interface Controller : NSObject {
     IBOutlet NSButton *button_add,*button_remove,*button_concat,*button_up, *button_down;
-    IBOutlet NSTextField *conat_fps, *concat_w, *concat_h, *concat_progress;
+    IBOutlet NSTextField *concat_progress;
     IBOutlet NSTableView *table_view;
     IBOutlet NSPopUpButton *popup_button;
     TableDelegate *table_delegate;
