@@ -250,6 +250,7 @@ void concatFrame(AddType add_type, cv::Mat &frame);
                 }
                 dispatch_sync(dispatch_get_main_queue(), ^{
                     [output_label setStringValue: [NSString stringWithFormat:@"Complete wrote to file %@", filename]];
+                    [button_concat_ setTitle:@"Concat"];
                     cv::destroyWindow("ConcatVideo");
                 });
                 [self setVideoProc: NO];
